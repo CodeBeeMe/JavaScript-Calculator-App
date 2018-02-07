@@ -1,0 +1,324 @@
+/*!===Date:06.09.2017===Copyright ©2017 CSS code by Cătălin Anghel-Ursu @Madness2aMaze (https://codepen.io/Madness2aMaze)
+ - All Rights Reserved=========*/
+
+/*MIT License
+
+Copyright (c) 2017 - 2018 Cătălin Anghel-Ursu (https://github.com/Madness2aMaze/JavaScript-Calculator-App)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.*/
+
+body {
+  font-family: "Orbitron", sans-serif;
+  background: #4ac29a; /* fallback for old browsers */
+  background: linear-gradient(to right, #bdfff3, #4ac29a);
+}
+.title {  
+  margin: 0 auto;
+  color: #ccffed;
+  font-family: "Play", sans-serif;
+  text-shadow: 0px 0px 3px #5effc9;
+  background: linear-gradient(
+    to right,
+    rgba(61, 67, 76, 0) 0%,
+    rgba(61, 67, 76, 0.83) 35%,
+    rgba(61, 67, 76, 0.83) 65%,
+    rgba(61, 67, 76, 0) 100%
+  );
+  cursor: pointer;
+}
+.title h1 {
+  padding-bottom: 5px;
+}
+.shell {
+  margin: 0 auto;
+  margin-top: 170px;
+  width: 275px;
+  height: 480px;
+  background: rgba(224, 239, 249, 1);
+  background: linear-gradient(
+    to right,
+    rgba(185, 253, 240, 1) 0%,
+    rgba(181, 198, 208, 1) 6%,
+    rgba(242, 246, 248, 1) 93%,
+    rgba(107, 163, 147, 0.8) 100%
+  );
+  border-radius: 30px;
+  border: 2px rgb(189, 255, 243) outset;
+  box-shadow: 15px 10px 12px -3px rgba(0, 0, 0, 0.4);
+  opacity: 0.9;
+  /*border-radius: 280px / 120px;*/ /*oval shape*/
+}
+.anim-calc {
+  animation: animationFramesCalc ease 1s;
+  animation-iteration-count: 1;
+  transform-origin: 50% 50%;
+  animation-fill-mode: forwards;
+}
+@keyframes animationFramesCalc {
+  0% {
+    opacity: 0;
+    transform: translate(-1500px, 0px);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(30px, 0px);
+  }
+  80% {
+    transform: translate(-10px, 0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
+}
+.anim-calc-out {
+  animation: animationFramesCalcOut ease 1s;
+  animation-iteration-count: 1;
+  transform-origin: 50% 50%;
+  animation-fill-mode: forwards;
+}
+@keyframes animationFramesCalcOut {
+  0% {
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(20px, 0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-1500px, 0px);
+  }
+}
+.display {
+  margin: 0 auto;
+  margin-top: 0px;
+  width: 269px;
+  height: 155px;
+  background: linear-gradient(
+    to right,
+    rgba(185, 253, 240, 1) 2%,
+    rgba(181, 198, 208, 1) 6%,
+    rgba(84, 89, 96, 1) 94.5%,
+    rgba(79, 125, 112, 1) 100%
+  );
+  border-radius: 28px 28px 0px 0px;
+  box-shadow: inset -2px 4px 47px -4px rgba(61, 67, 76, 0.6);
+  border-bottom: 1px rgba(61, 67, 76, 0.2) ridge;
+}
+.icons {
+  padding-left: 20px;
+  padding-top: 10px;
+  color: #ccffed;
+  text-shadow: 1px 0px 5px #5effc9;
+  opacity: 0;
+}
+#js {
+  font-family: "Orbitron", sans-serif;
+  font-style: italic;
+}
+.anim-icons {
+  animation: animationFrames ease 1s;
+  animation-iteration-count: 1;
+  transform-origin: 50% 50%;
+  animation-fill-mode: forwards;
+}
+@keyframes animationFrames {
+  0% {
+    opacity: 0;
+    transform: translate(0px, -15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
+}
+.results {
+  height: 155px;
+  padding-top: 28px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.main {
+  font-family: "Quantico", sans-serif;
+  /*font-family: 'Jura', sans-serif;*/
+  /*font-family: 'Kelly Slab', cursive;*/
+  color: #ccffed;
+  text-shadow: 1px 0px 8px #5effc9;
+  font-size: 25px;
+  transform: scaleY(1.5);
+  text-align: right;
+}
+.sec {
+  margin-bottom: 35px;
+  font-family: "Quantico", sans-serif;
+  color: #ccffed;
+  text-shadow: 1px 0px 5px #5effc9;
+  font-size: 14px;
+  transform: scaleY(1.5);
+  text-align: right;
+}
+.anim-display {
+  animation: animationFrames2 ease 1s;
+  animation-iteration-count: 1;
+  transform-origin: 50% 50%;
+  animation-fill-mode: forwards;
+}
+@keyframes animationFrames2 {
+  0% {
+    opacity: 0;
+    transform: translate(0px, -25px);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1.5);
+  }
+}
+/*.brand {
+  font-family: 'Play', sans-serif;
+  color: #fff;
+  margin: 0 auto;
+  border-bottom: 1px rgba(148,172,181,.6) solid;
+}
+h6 {
+  padding-top: 2px;
+  font-size: 12px;
+}*/
+.keys {
+  margin-left: 17px;
+  margin-top: 5px;
+  list-style-type: none;
+}
+.key {
+  font-family: "Quantico", sans-serif;
+  font-size: 30px;
+  color: rgb(83, 88, 96);
+  margin-top: 10px;
+  margin-right: 6px;
+  width: 55px;
+  height: 50px;
+  background: none;
+  float: left;
+  border-radius: 15px;
+  border-color: #fff;
+  border-width: 1px;
+  padding-top: 2px;
+  cursor: pointer;
+}
+.key:focus {
+  outline: 0;
+}
+.key:active {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(254, 255, 255, 1) 0%,
+    rgba(189, 255, 243, 1) 35%,
+    rgba(74, 194, 154, 1) 100%
+  );
+}
+.double {
+  font-size: 22px;
+  padding-top: 4px;
+  background: linear-gradient(
+    135deg,
+    rgba(243, 197, 189, 1) 0%,
+    rgba(255, 122, 148, 1) 83%,
+    rgba(255, 56, 95, 1) 100%
+  );
+}
+.double a {
+  font-size: 20px;
+}
+#backspace {
+  font-size: 24px;
+  margin-top: 3px;
+  transform: rotate(180deg);
+}
+.arithm-ops {
+  padding-top: 0px;
+  background: linear-gradient(
+    135deg,
+    rgba(189, 255, 243, 0.6),
+    rgba(74, 194, 154, 0.6)
+  );
+}
+.glow {
+  animation-name: fade;
+  animation-duration: 3000ms;
+  animation-iteration-count: infinite;
+}
+@keyframes fade {
+  0% {
+    color: #fff;
+  }
+  50% {
+    color: rgb(83, 88, 96);
+  }
+  100% {
+    color: #fff;
+  }
+}
+#zero {
+  width: 115px;
+}
+a:visited,
+a:link {
+  color: rgb(61, 67, 76);
+  text-decoration: none !important;
+}
+a:hover,
+a:active {
+  color: rgb(61, 67, 76);
+  text-decoration: none !important;
+}
+.footer {
+  margin: 0 auto;
+  margin-top: 166px;
+  color: rgb(181, 198, 208);
+  font-family: "Play", sans-serif;
+  background: linear-gradient(
+    to right,
+    rgba(61, 67, 76, 0) 0%,
+    rgba(61, 67, 76, 0.83) 35%,
+    rgba(61, 67, 76, 0.83) 65%,
+    rgba(61, 67, 76, 0) 100%
+  );
+}
+#footbar {
+  color: rgb(255, 122, 148);
+  transition: 0.5s;
+}
+#footbar:hover {
+  color: #fff;
+  transition: 0.5s;
+}
+#icon-fcc,
+#icon-cpen {
+  color: rgb(181, 198, 208);
+  transition: 0.5s;
+}
+#icon-fcc:hover,
+#icon-cpen:hover {
+  color: rgb(255, 122, 148);
+  transition: 0.5s;
+}
+h5 {
+  font-size: 14px;
+}
